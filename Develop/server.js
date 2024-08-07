@@ -1,7 +1,10 @@
 const express = require('express');
 const inquirer = require('inquirer');
 const { Pool } = require('pg');
-require('console.table');
+const dotenv = require('dotenv');
+
+
+dotenv.config();
 
 const app = express ();
 const PORT = process.env.PORT || 3001;
@@ -12,10 +15,10 @@ app.use(express.json());
 //Connect to databse
 const pool = new Pool (
     {
-        user: '',
-        password: '',
-        host: 'localhost',
-        database: 'employee_db'
+        user: process.env.DB_USER,
+        host: process.env.DB_HOST,
+        database: process.env.DB_NAME,
+        password: process.env.DB_PASSWORD,
     },
     console.log('Connected to employee_db!')
 )
